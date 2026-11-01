@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11130f">
+  <meta name="description" content="Yusufning shaxsiy portfolio sahifasi.">
+  <title>Yusuf — shaxsiy portfolio</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f1f0e8;
+      --muted: #a7aa9d;
+      --night: #11130f;
+      --panel: #1b1e18;
+      --line: rgba(241, 240, 232, .14);
+      --lime: #c9f36b;
+      --orange: #ff906b;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--night); color: var(--ink); font-family: var(--sans); }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+    header { height: 82px; display: flex; align-items: center; border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { color: var(--lime); text-decoration: none; font-size: 20px; font-weight: 800; letter-spacing: -.08em; }
+    .links { display: flex; gap: 32px; }
+    .links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color .2s; }
+    .links a:hover, .links a:focus-visible { color: var(--lime); }
+    .nav-cta { padding: 11px 16px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; font-size: 12px; }
+    .hero { min-height: 620px; display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 60px; padding: 92px 0 106px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--lime); font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 24px; height: 1px; background: currentColor; }
+    h1 { max-width: 680px; margin: 24px 0 20px; font-size: clamp(54px, 8vw, 102px); line-height: .96; letter-spacing: -.075em; font-weight: 650; }
+    h1 em { color: var(--lime); font-family: var(--serif); font-weight: 400; letter-spacing: -.07em; }
+    .intro { max-width: 510px; color: var(--muted); font-size: 16px; line-height: 1.85; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .button { display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 19px; border-radius: 999px; text-decoration: none; font-size: 13px; font-weight: 700; transition: transform .2s, background .2s; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { color: #15180f; background: var(--lime); }
+    .button-secondary { border: 1px solid var(--line); }
+    .arrow { font-size: 17px; }
+    .visual { position: relative; min-height: 390px; display: grid; place-items: center; }
+    .orb { position: absolute; width: min(340px, 78vw); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #d8ff89, #8db84a 36%, #3d5130 68%, #242b20); box-shadow: 0 0 90px rgba(201, 243, 107, .14); }
+    .orb::before, .orb::after { position: absolute; content: ""; border: 1px solid rgba(241, 240, 232, .3); border-radius: 50%; inset: -25px; transform: rotate(-25deg) scaleY(.34); }
+    .orb::after { inset: -54px; transform: rotate(34deg) scaleY(.34); border-color: rgba(255, 144, 107, .5); }
+    .orb-letter { position: relative; z-index: 1; color: #17200f; font-family: var(--serif); font-size: clamp(130px, 20vw, 230px); line-height: 1; letter-spacing: -.1em; transform: translateX(-.07em); }
+    .orbit-label { position: absolute; right: 0; bottom: 25px; padding: 15px 18px; border: 1px solid var(--line); border-radius: 14px; background: rgba(27, 30, 24, .9); color: var(--muted); font-size: 11px; letter-spacing: .13em; line-height: 1.7; text-transform: uppercase; }
+    .orbit-label strong { display: block; color: var(--ink); font-size: 13px; letter-spacing: .02em; text-transform: none; }
+    section { padding: 90px 0; border-top: 1px solid var(--line); }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 34px; }
+    .section-kicker { color: var(--orange); font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+    h2 { margin: 10px 0 0; font-size: clamp(34px, 5vw, 58px); line-height: 1; letter-spacing: -.06em; font-weight: 600; }
+    .section-note { max-width: 320px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .about-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 50px; align-items: start; }
+    .about-mark { padding: 28px; border-radius: 18px; background: var(--lime); color: #17200f; min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; }
+    .about-mark span:first-child { font-family: var(--serif); font-size: 64px; line-height: .9; }
+    .about-mark span:last-child { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .about-copy { margin: 0; max-width: 670px; color: var(--muted); font-size: 17px; line-height: 1.9; }
+    .about-copy strong { color: var(--ink); font-weight: 500; }
+    .project { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 22px; padding: 30px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(120deg, var(--panel), rgba(27, 30, 24, .35)); text-decoration: none; transition: border-color .2s, transform .2s; }
+    .project:hover { border-color: rgba(201, 243, 107, .65); transform: translateY(-3px); }
+    .project-tag { color: var(--lime); font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+    .project h3 { margin: 12px 0 8px; font-size: 24px; letter-spacing: -.04em; }
+    .project p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .project-icon { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--lime); color: #17200f; font-size: 23px; }
+    .contact { padding-bottom: 112px; }
+    .contact-card { padding: clamp(28px, 6vw, 64px); border-radius: 22px; background: var(--lime); color: #17200f; display: flex; justify-content: space-between; align-items: end; gap: 28px; }
+    .contact-card .section-kicker { color: #485b2a; }
+    .contact-card h2 { max-width: 560px; }
+    .contact-card p { max-width: 390px; margin: 18px 0 0; color: #48533b; line-height: 1.7; font-size: 14px; }
+    .contact-card .button { flex: 0 0 auto; color: var(--ink); background: var(--night); }
+    footer { padding: 22px 0 30px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+    .footer-row { display: flex; justify-content: space-between; gap: 18px; }
+    .footer-row a { color: var(--lime); text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 32px, 560px); }
+      header { height: 70px; }
+      .links { gap: 16px; }
+      .links a { font-size: 11px; }
+      .nav-cta { display: none; }
+      .hero { min-height: unset; grid-template-columns: 1fr; gap: 32px; padding: 78px 0 74px; }
+      h1 { font-size: clamp(58px, 15vw, 88px); }
+      .visual { min-height: 310px; }
+      .orb { width: 250px; }
+      .orbit-label { right: 4px; bottom: 0; }
+      section { padding: 70px 0; }
+      .section-head, .contact-card { align-items: start; flex-direction: column; }
+      .about-grid { grid-template-columns: 1fr; gap: 24px; }
+      .about-mark { min-height: 145px; }
+      .project { padding: 23px; }
+      .contact { padding-bottom: 78px; }
+    }
+    @media (max-width: 420px) {
+      .links { gap: 11px; }
+      .links a { font-size: 10px; }
+      .project { grid-template-columns: 1fr; }
+      .project-icon { display: none; }
+      .footer-row { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav wrap" aria-label="Asosiy menyu">
+      <a class="brand" href="#bosh">Y.</a>
+      <div class="links">
+        <a href="#men-haqimda">Men haqimda</a>
+        <a href="#loyihalar">Loyihalar</a>
+        <a href="#boglanish">Bog‘lanish</a>
+      </div>
+      <a class="nav-cta" href="https://github.com/yusufjonismoilov712-bot" target="_blank" rel="noreferrer">GitHub profil ↗</a>
+    </nav>
+  </header>
+  <main id="bosh">
+    <div class="wrap hero">
+      <div>
+        <span class="eyebrow">Shaxsiy portfolio</span>
+        <h1>Salom,<br>men <em>Yusufman.</em></h1>
+        <p class="intro">Bu sahifada men haqimdagi qisqacha ma’lumotlar va loyihalarimni jamlayman. Hozircha bu — yangi g‘oyalar uchun boshlang‘ich nuqta.</p>
+        <div class="actions">
+          <a class="button button-primary" href="#loyihalar">Loyihalarni ko‘rish <span class="arrow">↓</span></a>
+          <a class="button button-secondary" href="https://github.com/yusufjonismoilov712-bot" target="_blank" rel="noreferrer">GitHub profilim <span class="arrow">↗</span></a>
+        </div>
+      </div>
+      <div class="visual" aria-label="Y harfi tasvirlangan dekorativ shakl">
+        <div class="orb"></div><span class="orb-letter" aria-hidden="true">Y</span>
+        <div class="orbit-label">Onlayn portfolio<strong>Yusuf · GitHub</strong></div>
+      </div>
+    </div>
+    <section id="men-haqimda">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="section-kicker">01 / Men haqimda</span><h2>Oddiy boshlanish.</h2></div>
+          <p class="section-note">Sahifa vaqt o‘tishi bilan yangi ma’lumotlar va ishlar bilan to‘ldiriladi.</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-mark"><span>Y.</span><span>Shaxsiy sahifa</span></div>
+          <p class="about-copy"><strong>Men Yusufman.</strong> Bu portfolio — o‘zimni tanishtirish, qiziqishlarim va yaratgan ishlarimni ulashish uchun joy. Hozircha sahifani sodda saqladim; keyinroq o‘zim haqimdagi aniq ma’lumotlar bilan yangilayman.</p>
+        </div>
+      </div>
+    </section>
+    <section id="loyihalar">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="section-kicker">02 / Tanlangan ishlar</span><h2>Loyihalar.</h2></div>
+          <p class="section-note">GitHub’dagi yangi ishlarimni shu yerdan kuzatishingiz mumkin.</p>
+        </div>
+        <a class="project" href="https://github.com/yusufjonismoilov712-bot/yusuf-ai" target="_blank" rel="noreferrer">
+          <div><span class="project-tag">GitHub repository</span><h3>yusuf-ai</h3><p>Ochiq repozitoriyga o‘tish va keyingi yangiliklarni ko‘rish.</p></div>
+          <span class="project-icon" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+    <section class="contact" id="boglanish">
+      <div class="wrap">
+        <div class="contact-card">
+          <div><span class="section-kicker">03 / Bog‘lanish</span><h2>Salom ayting.</h2><p>Taklif yoki fikringiz bo‘lsa, GitHub profilim orqali bog‘lanishingiz mumkin.</p></div>
+          <a class="button" href="https://github.com/yusufjonismoilov712-bot" target="_blank" rel="noreferrer">GitHub profiliga o‘tish <span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-row"><span>© 2026 Yusuf · Shaxsiy portfolio</span><a href="#bosh">Yuqoriga qaytish ↑</a></div></footer>
+</body>
+</html>
